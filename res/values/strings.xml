@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cuaresmario 2014</string>
+    <string name="desc"></string>
+    <string name="action_settings">Compartir</string>
+    <string name="title_section1">5 de Marzo</string>
+    <string name="title_section2">6 de Marzo</string>
+    <string name="title_section3">7 de Marzo</string>
+
+</resources>
