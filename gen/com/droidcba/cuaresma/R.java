@@ -54,15 +54,22 @@ public final class R {
         public static final int dia_4_11=0x7f02001e;
         public static final int dia_4_12=0x7f02001f;
         public static final int dia_4_13=0x7f020020;
-        public static final int dia_4_2=0x7f020021;
-        public static final int dia_4_3=0x7f020022;
-        public static final int dia_4_4=0x7f020023;
-        public static final int dia_4_5=0x7f020024;
-        public static final int dia_4_6=0x7f020025;
-        public static final int dia_4_7=0x7f020026;
-        public static final int dia_4_8=0x7f020027;
-        public static final int dia_4_9=0x7f020028;
-        public static final int ic_launcher=0x7f020029;
+        public static final int dia_4_14=0x7f020021;
+        public static final int dia_4_15=0x7f020022;
+        public static final int dia_4_16=0x7f020023;
+        public static final int dia_4_17=0x7f020024;
+        public static final int dia_4_18=0x7f020025;
+        public static final int dia_4_19=0x7f020026;
+        public static final int dia_4_2=0x7f020027;
+        public static final int dia_4_20=0x7f020028;
+        public static final int dia_4_3=0x7f020029;
+        public static final int dia_4_4=0x7f02002a;
+        public static final int dia_4_5=0x7f02002b;
+        public static final int dia_4_6=0x7f02002c;
+        public static final int dia_4_7=0x7f02002d;
+        public static final int dia_4_8=0x7f02002e;
+        public static final int dia_4_9=0x7f02002f;
+        public static final int ic_launcher=0x7f020030;
     }
     public static final class id {
         public static final int action_settings=0x7f080003;

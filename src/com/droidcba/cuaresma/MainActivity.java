@@ -4,7 +4,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,7 +20,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends FragmentActivity {
@@ -49,12 +56,13 @@ public class MainActivity extends FragmentActivity {
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
-		int cardNumber = 0;
-		int month = Calendar.MONTH + 1;
-		int day = 5;
-		Date d = new Date();
 		Calendar today = Calendar.getInstance();
+		Date d = new Date();
 		today.setTime(d);
+		
+		int cardNumber = 0;
+		int month = today.get(Calendar.MONTH) + 1;
+		int day = 5;
 		day = today.get(Calendar.DAY_OF_MONTH);
 		
 		if( month == 3) {
@@ -80,7 +88,7 @@ public class MainActivity extends FragmentActivity {
             	Intent share = new Intent(Intent.ACTION_SEND);
 				share.setType("text/plain");
 				share.putExtra(Intent.EXTRA_TEXT, "http://www.catolicosconaccion.com/");
-                share.putExtra(android.content.Intent.EXTRA_SUBJECT, "Sumate a Cuaresma con AcciÛn!");
+                share.putExtra(android.content.Intent.EXTRA_SUBJECT, "Sumate a Cuaresma con AcciÔøΩn!");
                 
 				startActivity(Intent.createChooser(share, "Compartir con"));
 	
@@ -111,6 +119,8 @@ public class MainActivity extends FragmentActivity {
 			int month = getMonthByPosition(position);
 			
 			args.putString(DummySectionFragment.ARG_SECTION_NUMBER, "dia_" + month + "_" + day);
+			args.putInt(DummySectionFragment.ARG_MONTH, month);
+			args.putInt(DummySectionFragment.ARG_DAY, day);
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -118,7 +128,7 @@ public class MainActivity extends FragmentActivity {
 		@Override
 		public int getCount() {
 			// Show 40 total pages.
-			return 40;
+			return 47;
 		}
 
 		private int getDayByPosition(int position) {
@@ -159,6 +169,8 @@ public class MainActivity extends FragmentActivity {
 		 * fragment.
 		 */
 		public static final String ARG_SECTION_NUMBER = "section_number";
+		public static final String ARG_MONTH = "month";
+		public static final String ARG_DAY = "day";
 
 		public DummySectionFragment() {
 		}
@@ -169,11 +181,44 @@ public class MainActivity extends FragmentActivity {
 			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
 					container, false);
 			
+			int month = getArguments().getInt(ARG_MONTH);
+			int day = getArguments().getInt(ARG_DAY);
 			String image_day = getArguments().getString(ARG_SECTION_NUMBER);
 
 			ImageView iv = (ImageView) rootView.findViewById(R.id.imageView1);
-			int drawableResourceId = this.getResources().getIdentifier(image_day, "drawable", "com.droidcba.cuaresma");
+			final int drawableResourceId = this.getResources().getIdentifier(image_day, "drawable", "com.droidcba.cuaresma");
 			iv.setImageResource(drawableResourceId);
+			
+			// Set background color
+			if(month == 4 && day > 13) {
+				rootView.setBackgroundColor(Color.parseColor("#87888a"));
+			} else {
+				rootView.setBackgroundColor(Color.parseColor("#bbbab9"));
+			}
+			
+			/*
+			Button shareButton = (Button) rootView.findViewById(R.id.btnShare);
+			
+			shareButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					Intent share = new Intent(Intent.ACTION_SEND);
+					 
+				    // If you want to share a png image only, you can do:
+				    // setType("image/png"); OR for jpeg: setType("image/jpeg");
+				    share.setType("image/png");
+
+				    // Make sure you put example png image named myImage.png in your
+				    // directory
+				    Uri uri = Uri.parse("android.resource://com.droidcba.cuaresma/" + drawableResourceId);
+				    share.putExtra(Intent.EXTRA_STREAM, uri);
+				 
+				    startActivity(Intent.createChooser(share, "Compart√≠ esta imagen"));
+				}
+			});
+			*/
 			
 			return rootView;
 		}
